@@ -1,0 +1,41 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_work_status_post">
+  <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>TAILOR</th>
+      <td><select name="select" class="form-control" id="select">
+          {% for i in data %}
+          <option value="{{ i['login_id'] }}">{{ i['name'] }} </option>>
+          {% endfor %}
+      </select></td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="GO" /></td>
+
+    </tr>
+  </table>
+   <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>SL.NO</th>
+      <th>CUSTOMER</th>
+      <th>DRESS</th>
+      <th>COUNT</th>
+      <th>ASSIGN DATE</th>
+      <th>END DATE</th>
+      <th>STATUS</th>
+    </tr>
+      {% for i in data1 %}
+    <tr>
+      <td>{{ loop.index}}</td>
+      <td> {{ i['name'] }}</td>
+      <td>{{ i['dress_name'] }}</td>
+      <td>&nbsp;{{ i['count'] }}</td>
+      <td>{{ i['assign_date'] }}</td>
+      <td>&nbsp;{{ i['end_date'] }}</td>
+      <td>{{ i['status']  }}</td>
+
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

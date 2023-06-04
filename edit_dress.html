@@ -1,0 +1,15 @@
+{% extends "admin/index.html" %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/adm_edit_dress_post">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <td>Dress Name</td>
+      <td><input type="text"  class="form-control" name="textfield" id="textfield" value="{{ data['name'] }}"required/></td>
+    </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" name="button" id="button" value="UPDATE" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

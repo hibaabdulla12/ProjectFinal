@@ -1,0 +1,22 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_assign_work_to_tailors_post">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <td>CHOOSE TAILOR</td>
+      <td><select name="select" class="form-control" id="select">
+          {% for i in data %}
+             <option value="{{ i['login_id'] }}">{{ i['name'] }}</option>
+          {% endfor %}
+      </select></td>
+    </tr>
+      <tr>
+      <td>END DATE</td>
+      <td><input type="date" class="form-control" name="textfield" id="textfield"/></td>
+      </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" name="button" id="button" value="ASSIGN" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "tailor/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/view_previous_works_post">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+        <th>From</th>
+      <td>
+        <input type="date" class="form-control" name="textfield" id="textfield" />
+      </td>
+        <th>To</th>
+      <td>
+        <input type="date"  class="form-control" name="textfield2" id="textfield2" />
+      </td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="Search" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>sl.no</th>
+      <th>Customer</th>
+      <th>Dress</th>
+      <th>Count</th>
+      <th>Assigned Date</th>
+      <th>End Date</th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['name'] }}&nbsp;</td>
+      <td>{{ i['dress_name'] }}</td>
+      <td>{{ i['count'] }}</td>
+      <td>{{ i['assign_date'] }}&nbsp;</td>
+      <td>{{ i['end_date'] }}&nbsp;</td>
+
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

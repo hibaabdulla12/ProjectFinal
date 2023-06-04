@@ -1,0 +1,41 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_booking_post">
+  <table align="right">
+    <tr>
+      <td>FROM</td>
+      <td><input type="date" class="form-control" name="textfield" id="textfield" /></td>
+      <td>TO</td>
+      <td><input type="date" name="textfield2" class="form-control" id="textfield2" /></td>
+      <td><input type="submit" name="button" id="button" value="GO" class="btn btn-primary" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered">
+    <tr class="tr1">
+      <th>SL.NO</th>
+      <th>DATE</th>
+      <th>CUSTOMER</th>
+      <th>DRESS NAME</th>
+      <th>DRESS MODEL</th>
+      <th>COUNT</th>
+      <th>EXPECTED DATE</th>
+        <th>DESCRIPTION</th>
+      <th>&nbsp;</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}&nbsp;</td>
+      <td>&nbsp;{{ i['date'] }}</td>
+      <td>&nbsp;{{ i['name'] }}</td>
+      <td>{{ i['dress_name'] }}</td>
+        <td><a href="{{ i['image'] }}" target="_blank"> <img src="{{ i['image'] }}" height="100" width="100"></a></td>
+      <td>{{ i['count'] }}</td>
+      <td>{{ i['expected_date'] }}</td>
+      <td>{{ i['description'] }}</td>
+      <td><a href="/adm_assign_work_to_tailors/{{i['booking_id']  }}">ASSIGN</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

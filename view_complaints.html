@@ -1,0 +1,43 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_complaints_post">
+  <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th width="46">FROM</th>
+      <td width="72"><input type="date" class="form-control" name="textfield" id="textfield" /></td>
+      <th width="15">TO</th>
+      <td width="15"><input type="date" class="form-control" name="textfield2" id="textfield2" /></td>
+      <td width="18"><input type="submit" class="btn btn-success" name="button" id="button" value="GO" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>SL.NO</th>
+      <th>DATE</th>
+      <th>CUSTOMER</th>
+      <th>COMPLAINT</th>
+      <th>REPLY</th>
+
+    </tr>
+
+      {% for i in data %}
+
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['date'] }}</td>
+      <td>&nbsp;{{ i['name'] }}</td>
+      <td>&nbsp;{{ i['complaint'] }}</td>
+      <td>
+          {% if i['status'] == 'pending'  %}
+               <a href="/adm_send_reply/{{ i['complaint_id'] }}">reply</a>
+          {% else %}
+            {{ i['reply'] }}
+          {% endif %}
+      </td>
+    </tr>
+
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

@@ -1,0 +1,305 @@
+<p>{% extends "tailor/index.html" %}
+  {% block body %}</p>
+<html>
+<head>
+    <script type="text/javascript" src="{{ url_for('static',filename='jqueryy.js') }}"></script>
+
+</head>
+<body>
+<table width="1250" height="0"  border="1"  id="tbl1" name="tbl1" bgcolor="#000033" align="center">
+
+   <td width="374" height="444" align="center" valign="top" >
+   <p align="right">
+     
+     
+   </p>
+   <p><font color="#000033" style="font-size:24px" >My Profile</font></p>
+   <p></p>
+   <table style="color:#003" width="200" id="tbl6" name="tbl6" bgcolor="#000033" align="center">
+  
+   </table><p>&nbsp;</p> <p>
+    <label for="textfield"></label>
+    <font color="#999999">Search</font>
+    <input type="text" name="txt1" id="txt1">
+  </p>
+  
+<table width="330" id="tbl" name="tbl" border="1" bgcolor="#000033">
+  
+</table></td>
+
+  <td width="374" >
+   
+<p align="center">&nbsp;
+</p>
+<p align="center"><font color="#000033" style="font-size:24px">Chat</font>
+</p>
+    <div style="overflow: auto;hight:300px; width:600px;" id="send" align="center" ></div>
+   
+    
+
+      <p align="center">
+         <label for="textfield3"></label>
+         <input type="text" name="txt2" id="txt2">
+         <input type="submit" name="btn" id="btn" value="send">
+      </p>
+       
+       
+         <p >
+           <label for="textfield4"></label>
+           <input type="text" name="txt3" id="txt3" hidden="txt3">
+           <label for="textfield2"></label>
+           <input type="text" name="txt4" id="txt4" value="{{data[0]}}" hidden="txt4">
+         </p>
+         
+       <p>&nbsp; </p>
+     
+  
+  <td width="230" align="center" valign="top"><p>&nbsp;</p>
+    <p><font color="#000033" style="font-size:24px" >Friends Profile</font></p>
+    <p></p>
+    <table style="color:#003" width="200" id="tbl5" name="tbl5" bgcolor="#000033">
+   
+    </table></td>
+</table>
+<script type="text/javascript">
+	   var refreshId;
+	$(document).ready(function() {
+		
+	$.getJSON('/registr', {}, function(data){
+		
+		
+		var len =data.length;
+		
+		//$("#tbl").html(data);
+				for(var i = 0; i<len; i++){
+					var regid1=data[i]['regid'];
+					var rec=data[0]['regid'];
+					var name1=data[i]['name'];
+					var place1=data[i]['place'];
+					var email1=data[i]['email'];
+					var phone1=data[i]['phone'];
+					var uname1=data[i]['uname'];
+			
+			
+					
+					$("#tbl").append("<tr><td>"+name1+"</td><td>"+place1+"</td><td>"+email1+"</td><td>"+phone1+"</td><td>"+uname1+"</td><td><input type='submit' id='bb' name='bb' value="+regid1+"></td></tr>");
+					
+				}
+					
+			
+	
+		  	
+       sendid = $('input[name="txt4"]').val();
+	   $('input[name="txt3"]').val(rec);
+	   function test1(){
+       $.getJSON('/viewchat',{
+		  
+		   
+		   },function(data){
+			  
+			  // alert(sendid);
+			   
+			   
+		  $("#send").text("");
+		  var len =data.length;
+		 
+		  
+				for(var i = 0; i<len; i++){	
+				
+					var msg1=data[i]['msg'];
+					
+					var regid1=data[i]['regid'];
+					
+					var reciverid1=data[i]['reciverid'];
+					
+			        if(regid1==sendid&&reciverid1==rec)
+					{ 
+		                
+					$("#send").append("<div align='center'><table id=tbll '' style='width:300px;'<tr border=0><td><div      align='right' ><div style='background-color:gray'><div>"+msg1+"</div></td></tr></table></div>");
+					  					 }
+						  
+			        else if(regid1==rec&&reciverid1==sendid)
+					{
+					
+
+					$("#send").append(" <div align='center'><table id=tbll '' style='width:300px;'<tr border=0><td><div align='left' ><div style='background-color:lightgray'>"+msg1+"</div></td></tr></table></div>");
+				}
+				
+			}
+	});
+	   }
+	  refreshId=setInterval(test1,1000);
+	   
+	   $.getJSON('/profile', {
+		  reciverid :rec
+	}, function(data1){
+		//alert("mmmmmmmmmmmmm");
+		$("#tbl5").text("");
+		 var len =data1.length;
+		  
+				for(var i = 0; i<len; i++){	
+		
+					var regid1=data1[i]['regid'];
+					var name1=data1[i]['name'];
+					var place1=data1[i]['place'];
+					var email1=data1[i]['email'];
+					var phone1=data1[i]['phone'];
+					var uname1=data1[i]['uname'];
+			
+			
+					
+					$("#tbl5").append("<tr><tr><td>name</td><td>"+name1+"</td></tr><tr><td>place</td><td>"+place1+"</td></tr><tr><td>email</td><td>"+email1+"</td></tr><tr><td>phone num</td><td>"+phone1+"</td></tr><tr><td>username</td><td>"+uname1+"</td></tr></tr>");
+				}
+	});
+	 $.getJSON('/ownprofil', {
+		  regid :sendid
+	}, function(data2){
+		
+		//$("#tbl6").text("");
+		 var len =data2.length;
+		  
+			for(var i = 0; i<len; i++){	
+		
+				var regid1=data2[i]['regid'];
+				var name1=data2[i]['name'];
+				var place1=data2[i]['place'];
+				var email1=data2[i]['email'];   				var phone1=data2[i]['phone'];
+				var uname1=data2[i]['uname'];
+			
+			
+					
+					$("#tbl6").append("<tr><tr><td>name</td><td>"+name1+"</td></tr><tr><td>place</td><td>"+place1+"</td></tr><tr><td>email</td><td>"+email1+"</td></tr><tr><td>phone num</td><td>"+phone1+"</td></tr><tr><td>username</td><td>"+uname1+"</td></tr></tr>");
+				}
+	});
+
+});
+	
+});	
+$(document).ready(function() {
+	
+	$('input#txt1').keyup(function() {
+       // alert("hiiiiiiiii");
+		//l=$('input[name="txt1"]').val();
+		
+    	$.getJSON('/search', {
+			txt1: $('input[name="txt1"]').val()
+		//txt1:l
+		},function(data1){ 
+		alert(txt1)
+				var len =data1.length;
+		alert(len);
+		$("#tbl").text("");
+				for(var i = 0; i<len; i++){
+					var regid1=data1[i]['regid'];
+					var name1=data1[i]['name'];
+					var place1=data1[i]['place'];
+					var email1=data1[i]['email'];
+					var phone1=data1[i]['phone'];
+					var uname1=data1[i]['uname'];
+			
+			$("#tbl").append("<tr><td>"+name1+"</td><td>"+place1+"</td><td>"+email1+"</td><td>"+phone1+"</td><td>"+uname1+"</td><td><input type='submit' id='bb' name='bb' value="+regid1+"></td></tr>");
+					
+			
+					}
+					});
+			
+			});
+			});
+	$(document).ready(function() {	
+		
+	$(document).on('click','#bb',function()  {
+		
+	  	cc=$(this).val();
+      $('input[name="txt3"]').val(cc);
+	   alert(cc);
+	   sendid = $('input[name="txt4"]').val();
+	   alert(sendid);
+	   function test(){
+       $.getJSON('/viewchat',{
+		  
+		   },function(data){
+		   $("#send").text("");
+		  var len =data.length;
+		  
+				for(var i = 0; i<len; i++){	
+				
+					var msg1=data[i]['msg'];
+					
+					var regid1=data[i]['regid'];
+					
+					var reciverid1=data[i]['reciverid'];
+					
+			        if(regid1==sendid&&reciverid1==cc)
+					{ 
+		                
+					$("#send").append("<div align='center'><table id=tbll '' style='width:300px;'<tr border=1><td><div      align='right' ><div style='background-color:gray'>"+msg1+"</div></td></tr></table></div>");
+					  					 }
+						  
+			        else if(regid1==cc&&reciverid1==sendid)
+					{
+					
+
+					$("#send").append(" <div align='center'><table id=tbll '' style='width:300px;'<tr border=1><td><div  align='left'><div style='background-color:lightgray'>"+msg1+"</div></td></tr></table></div>");
+				}
+				
+			}
+	});
+	   }
+	   var refreshI=setInterval(test,1000);
+	   clearInterval(refreshId);
+	   	 
+	  $.getJSON('/profile', {
+		 reciverid:cc
+	}, function(data1){
+		$("#tbl5").text("");
+		 var len =data1.length;
+		  
+				for(var i = 0; i<len; i++){	
+		
+					var regid1=data1[i]['regid'];
+					var name1=data1[i]['name'];
+					var place1=data1[i]['place'];
+					var email1=data1[i]['email'];
+					var phone1=data1[i]['phone'];
+					var uname1=data1[i]['uname'];
+			
+			
+					
+					$("#tbl5").append("<tr><tr><td>name</td><td>"+name1+"</td></tr><tr><td>place</td><td>"+place1+"</td></tr><tr><td>email</td><td>"+email1+"</td></tr><tr><td>phone num</td><td>"+phone1+"</td></tr><tr><td>username</td><td>"+uname1+"</td></tr></tr>");
+				}
+	});
+				
+	});
+	});
+	
+	
+	$(document).ready(function() {
+		
+        $('input#btn').click(function() {
+			
+    	$.getJSON('/chat', {
+			reciverid: $('input[name="txt3"]').val(),
+			txt2: $('input[name="txt2"]').val()
+		},function(status){ 
+		$("#txt2").val("");
+		 
+		alert("send")
+		
+			});
+	
+				
+			
+			
+		});
+    });
+	//	
+//	$(document).ready(function() {
+// 	 $("input#button").click(function(){
+//		 $.getJSON('login.html', {
+//		 });
+//	 });
+//	});
+      </script>
+</body>
+</html>
+<p>{% endblock %}</p>

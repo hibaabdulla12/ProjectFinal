@@ -1,0 +1,49 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form action="/adm_add_tailor_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>Name</th>
+      <td><input type="text" name="textfield" id="textfield" required/></td>
+    </tr>
+    <tr>
+      <th>DOB</th>
+      <td><input type="date" name="textfield2" id="textfield2" required /></td>
+    </tr>
+    <tr>
+      <th>GENDER</th>
+      <td><input type="radio" name="radio" id="radio" value="male" checked/>
+        Male
+        <input type="radio" name="radio" id="radio2" value="female" />
+        Female</td>
+    </tr>
+    <tr>
+      <th>EMAIL</th>
+      <td><input type="email" class="form-control" name="textfield3" id="textfield3" required /></td>
+    </tr>
+    <tr>
+      <th>PHONE</th>
+      <td><input type="text" class="form-control" name="textfield4" id="textfield4" pattern="[6789][0123456789]{9}" maxlength="10" required /></td>
+    </tr>
+    <tr>
+      <th>HOUSE</th>
+      <td><input type="text" class="form-control" name="textfield5" id="textfield5" required/></td>
+    </tr>
+    <tr>
+      <th>POST</th>
+      <td><input type="text" class="form-control" name="textfield6" id="textfield6" required /></td>
+    </tr>
+    <tr>
+      <th>PIN</th>
+      <td><input type="text" class="form-control" name="textfield7" id="textfield7" pattern="[123456789][0123456789]{5}" maxlength="6" required/></td>
+    </tr>
+    <tr>
+      <th>IMAGE</th>
+      <td><input type="file"  class="form-control" name="fileField" id="fileField" /></td>
+    </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" class="btn btn-success" name="button" id="button" value="ADD" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

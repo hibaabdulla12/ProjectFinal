@@ -1,0 +1,85 @@
+{% extends "tailor/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/view_assigned_order_more_post">
+
+ <table class="table table-bordered" style="width: 500px;" align="center">
+  <tr>
+    <td>Dress Name</td>
+    <td>{{ data1['dress_name'] }}</td>
+  </tr>
+  <tr>
+    <td>Count</td>
+    <td>{{ data1['count']}}</td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Ordered by</strong></td>
+  </tr>
+  <tr>
+    <td>Customer Name</td>
+    <td>{{ data1['name'] }}</td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td>{{ data1['phone'] }}</td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td>{{ data1['email'] }}</td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Measurements</strong></td>
+  </tr>
+  <tr>
+    <td colspan="2">{{ data2['m1'] }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">{{ data2['m2'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m3'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m4'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m5'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m6'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m7'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m8'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m9'] }}</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">{{ data2['m10'] }}</td>
+  </tr>
+  <tr>
+    <td>Assigned Date</td>
+    <td>{{ data1['assign_date'] }}</td>
+  </tr>
+  <tr>
+    <td>End Date</td>
+    <td>{{ data1['end_date'] }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+  <center>    <input type="submit" name="button" id="button" value="Mark as Completed" /></center>
+   </td>
+  </tr>
+</table>
+    </form>
+{% endblock %}

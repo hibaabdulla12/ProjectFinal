@@ -1,0 +1,37 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_users_post">
+ <table align="right">
+    <tr>
+      <th>NAME</th>
+      <td><input type="text" class="form-control" name="textfield" id="textfield" /></td>
+      <td><input type="submit"class="btn btn-success" name="button" id="button" value="SEARCH" /></td>
+    </tr>
+  </table>
+   <table class="table table-bordered">
+    <tr>
+      <th>SL.NO</th>
+      <th> NAME</th>
+      <th> GENDER</th>
+      <th>EMAIL</th>
+      <th>PHONE</th>
+      <th> ADDRESS</th>
+      <th>IMAGE</th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['name'] }}</td>
+      <td>{{ i['gender'] }}</td>
+      <td>{{ i['email'] }}</td>
+      <td>{{ i['phone'] }}</td>
+      <td>{{ i['house'] }}<br>{{ i['post'] }}<br>{{ i['pin'] }}</td>
+      <td> <img src="{{ i['image'] }}" height="50" width="50"/></td>
+
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

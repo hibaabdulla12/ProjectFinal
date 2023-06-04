@@ -1,0 +1,29 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_dress_post">
+ <table align="right">
+    <tr>
+      <th>Dress Name</th>
+      <td><input type="text" class="form-control" name="textfield" id="textfield" /></td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="Search" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered" >
+    <tr class="tr1">
+      <th>SL.NO</th>
+      <th>DRESS NAME</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td width="50px">{{ loop.index }}</td>
+      <td>{{ i['name'] }}</td>
+      <td width="50px"><a href="/adm_edit_dress/{{ i['dress_id'] }}" class="btn btn-info">EDIT</a></td>
+      <td width="50px"><a href="/adm_del_dress/{{ i['dress_id'] }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">DELETE</a></td>
+    </tr>
+     {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

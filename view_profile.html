@@ -1,0 +1,42 @@
+{% extends "tailor/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <td colspan="2"><input type="image" name="imageField" id="imageField" src="{{ data['image']}}" height="50px" width="50px"/></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td>{{data['name']}}</td>
+    </tr>
+    <tr>
+      <th>DOB</th>
+      <td>{{ data['dob'] }}</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>{{ data['gender'] }}&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ data['email'] }}&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>&nbsp;{{ data['phone'] }}</td>
+    </tr>
+    <tr>
+      <th>House</th>
+      <td>&nbsp;{{ data['house'] }}</td>
+    </tr>
+    <tr>
+      <th>Post</th>
+      <td>&nbsp;{{data['post']}}</td>
+    </tr>
+    <tr>
+      <th>Pin</th>
+      <td>&nbsp;{{ data['pin'] }}</td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

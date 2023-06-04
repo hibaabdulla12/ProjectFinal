@@ -1,0 +1,31 @@
+{% extends "tailor/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+ <table class="table table-bordered" style="width: 500px;" align="center">
+    <tr>
+      <th>Sl.no</th>
+      <th>Customer</th>
+      <th>Dress</th>
+      <th>Dress Model</th>
+      <th>Count</th>
+      <th>Assign date</th>
+      <th>End date</th>
+      <th>&nbsp;</th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{loop.index  }}</td>
+      <td>{{ i['name'] }}</td>
+      <td>{{ i['dress_name'] }}</td>
+      <td><a href="{{ i['image'] }}" target="_blank"> <img src="{{ i['image'] }}" height="100" width="100"></a></td>
+      <td>&nbsp;{{ i['count'] }}</td>
+      <td>{{ i['assign_date'] }}</td>
+      <td>&nbsp;{{ i['end_date'] }}</td>
+      <td><a href="/view_assigned_order_more/{{ i['assign_id'] }}/{{ i['login_id'] }}">More</a></td>
+
+    </tr>
+{% endfor %}
+  </table>
+</form>
+{% endblock %}

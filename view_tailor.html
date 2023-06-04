@@ -1,0 +1,43 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/adm_view_tailor_post">
+<table align="right" >
+    <tr>
+      <th>NAME</th>
+      <td><input type="text" class="form-control" name="textfield" id="textfield" /></td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></td>
+    </tr>
+  </table>
+<br>
+<br>
+  <table class="table table-bordered" >
+    <tr>
+      <th>SL.NO</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>PHONE</th>
+      <th>ADDRESS</th>
+      <th>IMAGE</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+      {% for i in data %}
+
+
+
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['name'] }}</td>
+      <td>{{ i['email'] }}</td>
+      <td>&nbsp;{{ i['phone'] }}</td>
+      <td>&nbsp;{{ i['house'] }}<br>{{ i['post'] }}<br>{{ i['pin'] }}</td>
+      <td>&nbsp;<img src="{{ i['image'] }}" height="150" width="150"/></td>
+      <td><a href="/adm_edit_tailor/{{ i['tailor_id'] }}"  class="btn btn-info">EDIT</a></td>
+      <td><a href="/adm_del_tailor/{{ i['tailor_id'] }}"  class="btn btn-danger" onclick="return confirm('Are you sure?')">DELETE</a></td>
+    </tr>
+      {% endfor %}
+
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}
